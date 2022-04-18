@@ -1,0 +1,28 @@
+{
+  "name": "cbmart",
+  "version": "1.0.0",
+  "description": "ecommerce test project",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node api/app",
+    "server": "nodemon api/app",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node api/seeder",
+    "data:destroy": "node api/seeder -d"
+  },
+  "author": "cantin bartel",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^6.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
