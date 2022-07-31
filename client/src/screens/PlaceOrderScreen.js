@@ -29,7 +29,7 @@ const PlaceOrderScreen = () => {
         if (success) {
             navigate(`/order/${order._id}`)
         }
-    }, [navigate, success])
+    }, [navigate, success, dispatch])
 
     const placeOrderHandler = () => {
         console.log('cart.paymentMethod', cart.paymentMethod)
@@ -44,7 +44,7 @@ const PlaceOrderScreen = () => {
         }))
     }
     return (
-        <>
+        <div style={{ minHeight: `calc(100vh - 10rem)`}}>
             <div className="w-8/12 mx-auto">
                 <CheckoutSteps step1 step2 step3 step4 />
             </div>
@@ -117,7 +117,7 @@ const PlaceOrderScreen = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

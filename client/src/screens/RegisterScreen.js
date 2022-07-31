@@ -42,7 +42,7 @@ const RegisterScreen = () => {
     }
 
     return (
-        <div className="h-full w-1/3 mx-auto my-8">
+        <div className="h-full w-1/3 mx-auto my-8" style={{ minHeight: `calc(100vh - 10rem)`}}>
             <h1 className="uppercase text-3xl font-semibold mb-6">Sign up</h1>
             <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                 <label

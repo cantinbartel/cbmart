@@ -18,8 +18,8 @@ const CartScreen = () => {
     console.log(cartItems)
     useEffect(() => {
         if (id) dispatch(addToCart(id, qty))
-    }, [id, qty])
-    // }, [dispatch, id, qty])
+    // }, [id, qty])
+    }, [dispatch, id, qty])
 
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))

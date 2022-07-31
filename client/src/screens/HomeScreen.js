@@ -2,22 +2,31 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productAction'
 import Product from '../components/Product'
-
+import { useParams } from 'react-router-dom'
 import { FiLoader } from "react-icons/fi"
+import Paginate from '../components/Paginate'
 import { BiLoaderAlt } from "react-icons/bi"
+import SearchBox from '../components/SearchBox'
 
 const HomeScreen = () => {
+    const { keyword, pageNumber = 1 } = useParams()
+    console.log('keyword', keyword)
+    console.log('pageNumber', pageNumber)
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(listProducts())
-    }, [dispatch])
+        dispatch(listProducts(keyword, pageNumber))
+    }, [dispatch, keyword, pageNumber])
 
     const productList = useSelector(state => state.productList)
-    const { loading, error, products } = productList
+    const { loading, error, products, page, pages } = productList
 
     return (
         <div className='w-10/12 mx-auto'>
-            <h1 className='text-4xl mt-6 mb-10'>Latest Products</h1>
+            <div className='w-full flex justify-between'>
+                <h1 className='text-4xl mt-6 mb-10'>Latest Products</h1>
+                <SearchBox />
+            </div>
+            {/* <h1 className='text-4xl mt-6 mb-10'>Latest Products</h1> */}
             <div className={`w-full flex flex-wrap ${loading || error ? 'justify-center items-center' : 'justify-start'}`}>
                 {loading ? (
                     <FiLoader className='text-5xl rotating mt-36 mb-60' />
@@ -28,6 +37,9 @@ const HomeScreen = () => {
                         <Product key={product._id} product={product} index={i} />
                     ))
                 )}
+            </div>
+            <div className='w-full flex justify-center'>
+                <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
             </div>
         </div>
     )

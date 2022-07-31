@@ -12,6 +12,18 @@ body {
   height: 100vh;
 }
 
+input:focus {
+  outline:none;
+}
+
+select:focus {
+  outline:none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
 @keyframes rotating {
   from {
     transform: rotate(0deg);

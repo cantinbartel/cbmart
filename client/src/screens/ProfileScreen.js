@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getUserDetails, getUserUpdateProfile } from '../actions/userActions'
 import { listMyOrders } from '../actions/orderActions'
-import { ImCross } from 'react-icons/im';
+import { ImCross } from 'react-icons/im'
 
 const ProfileScreen = () => {
     const [name, setName] = useState('')
@@ -54,7 +54,7 @@ const ProfileScreen = () => {
     }
 
     return (
-        <div className="w-full h-full flex justify-start items-start text-gray-600">
+        <div className="w-full h-full flex justify-start items-start text-gray-600" style={{ minHeight: `calc(100vh - 9rem)`}}>
             <div className="h-full w-3/12 my-8 mx-8">
                 <h1 className="uppercase text-3xl font-semibold mb-6">User Profile</h1>
                 <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>

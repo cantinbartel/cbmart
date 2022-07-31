@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { getOrderDetails, payOrder } from '../actions/orderActions'
+import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions'
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { ORDER_PAY_RESET } from '../constants/orderConstants'
+import { ORDER_PAY_RESET, ORDER_DELIVER_RESET, ORDER_DETAILS_RESET } from '../constants/orderConstants'
 
 const OrderScreen = () => {
     const [lastIndex, setLastIndex] = useState(0)
@@ -17,21 +17,25 @@ const OrderScreen = () => {
 
     console.log('orderId', orderId)
 
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
     const orderDetails = useSelector(state => state.orderDetails)
     const { order, loading, error } = orderDetails
 
     const orderPay = useSelector(state => state.orderPay)
     const { loading: loadingPay, success: successPay } = orderPay
 
+    const orderDeliver = useSelector(state => state.orderDeliver)
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+
     console.log('order.isPaid', order?.isPaid)
-    // useEffect(() => {
-    //     if (!order || order._id !== orderId) {
-    //         dispatch(getOrderDetails(orderId))
-    //     }
-    //     setLastIndex(order?.orderItems.length - 1)
-    // }, [order, orderId])
+    useEffect(() => {
+        dispatch(getOrderDetails(orderId))
+    }, [])
 
     useEffect(() => {
+        if(!userInfo) navigate('/login')
         const addPayPalScript = async () => {
             const { data: clientId } = await axios.get('/api/config/paypal')
             console.log('clientId', clientId)
@@ -47,8 +51,9 @@ const OrderScreen = () => {
 
         setLastIndex(order?.orderItems.length - 1)
 
-        if (!order || successPay) {
+        if (!order || successPay || successDeliver) {
             dispatch({ type: ORDER_PAY_RESET })
+            dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(orderId))
         } else if (!order.isPaid) {
             if (!window.paypal) {
@@ -59,7 +64,7 @@ const OrderScreen = () => {
         }
         // dispatch(getOrderDetails(orderId))
         // }, [])
-    }, [order, orderId, successPay, order])
+    }, [order, orderId, successPay, successDeliver, dispatch])
 
     console.log('order', order)
 
@@ -68,10 +73,14 @@ const OrderScreen = () => {
         dispatch(payOrder(orderId, paymentResult))
     }
 
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order))
+    }
+
     { loading && <p>Loading...</p> }
     { error && <p>{error}</p> }
     return (
-        <div className="w-10/12 mx-auto mt-6">
+        <div className="w-10/12 mx-auto mt-6" style={{ minHeight: `calc(100vh - 10rem)`}}>
             <h1 className="text-2xl font-semibold uppercase">Order {order?._id}</h1>
             {/* <div className="w-8/12 mx-auto">
                     <CheckoutSteps step1 step2 step3 step4 />
@@ -145,6 +154,12 @@ const OrderScreen = () => {
                                     <PayPalButton amount={order?.totalPrice} onSuccess={successPaymentHandler} />
                                 )}
                             </div>
+                        )}
+                        {loadingDeliver && <p>Loading...</p>}
+                        {userInfo && userInfo.isAdmin && order?.isPaid && !order?.isDelivered && (
+                            <button
+                                className="w-full bg-black text-white font-semibold px-3 py-2 rounded mt-3" 
+                                onClick={deliverHandler}>Mark as delivered</button>
                         )}
                     </div>
                 </div>

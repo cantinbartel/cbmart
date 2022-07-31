@@ -35,7 +35,7 @@ const PaymentScreen = () => {
         navigate('/placeorder')
     }
     return (
-        <div className="w-8/12 mx-auto">
+        <div className="w-8/12 mx-auto" style={{ minHeight: `calc(100vh - 10rem)`}}>
             <CheckoutSteps step1 step2 step3 />
             <h1 className="font-semibold text-2xl uppercase mb-8">Payment Method</h1>
             <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>

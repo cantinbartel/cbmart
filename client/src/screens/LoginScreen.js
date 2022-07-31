@@ -35,7 +35,7 @@ const LoginScreen = () => {
     }
 
     return (
-        <div className="h-full w-1/3 mx-auto my-8">
+        <div className="h-full w-1/3 mx-auto my-8" style={{ height: `calc(100vh - 12rem)`}}>
             <h1 className="uppercase text-3xl font-semibold mb-6">Sign in</h1>
             <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                 <label
