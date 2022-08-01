@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { listProducts } from '../actions/productAction'
+// import { listProducts } from '../actions/productAction'
 import Product from '../components/Product'
 import { useParams } from 'react-router-dom'
 import { FiLoader } from "react-icons/fi"
 import Paginate from '../components/Paginate'
 import { BiLoaderAlt } from "react-icons/bi"
 import SearchBox from '../components/SearchBox'
+import ProductCaroussel from '../components/ProductCaroussel'
+import { listProducts } from '../actions/productAction'
+import Carousel from 'react-bootstrap/Carousel'
 
 const HomeScreen = () => {
     const { keyword, pageNumber = 1 } = useParams()
@@ -22,6 +25,8 @@ const HomeScreen = () => {
 
     return (
         <div className='w-10/12 mx-auto'>
+            {/* {<ProductCaroussel />} */}
+            {/* {!keyword && (pageNumber = 1) && <ProductCaroussel />} */}
             <div className='w-full flex justify-between'>
                 <h1 className='text-4xl mt-6 mb-10'>Latest Products</h1>
                 <SearchBox />
