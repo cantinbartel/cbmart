@@ -3,9 +3,9 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCart } from '../actions/cartAction'
 import { FaTrash } from 'react-icons/fa'
+import emptyCart from '../assets/icons/empty-cart.png'
 
 const CartScreen = () => {
-    // const [qty, setQty] = useState()
     const { id } = useParams()
     const location = useLocation()
     const navigate = useNavigate()
@@ -18,17 +18,11 @@ const CartScreen = () => {
     console.log(cartItems)
     useEffect(() => {
         if (id) dispatch(addToCart(id, qty))
-    // }, [id, qty])
     }, [dispatch, id, qty])
 
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))
     }
-
-    // const addToCartHandler = (id, qty) => {
-    //     dispatch(addToCart(id, qty))
-    //     navigate('/cart')
-    // }
 
     const checkout = () => {
         console.log('checkout')
@@ -36,19 +30,23 @@ const CartScreen = () => {
     }
 
     return (
-        <div className="w-10/12 mx-auto font-semibold mt-6" style={{ minHeight: `calc(100vh * ${0.75})` }}>
+        <div className="w-10/12 mx-auto font-semibold mt-6" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
             <h1 className='text-2xl'>SHOPPING CART</h1>
-            {cartItems.length === 0 && (
+            {cartItems.length === 0 ? (
                 <div className="flex flex-col justify-center items-center" style={{ height: '60vh' }}>
                     <p className="mb-6">Your shopping is empty :(</p>
+                    <img 
+                        className='h-20 pb-6'
+                        src={emptyCart} />
                     <Link to='/'>
                         <button
                             className="uppercase bg-black text-white font-semibold rounded py-2 w-40"
                         >GO BACK</button>
                     </Link>
                 </div>
-            )}
-            <div className="flex flex-row flex-start items-start w-full">
+                )
+                : (
+                    <div className="flex flex-row flex-start items-start w-full">
                 <div className="w-6/10">
                     {cartItems.length > 0 && (
                         cartItems.map(item => (
@@ -96,6 +94,8 @@ const CartScreen = () => {
                     </div>
                 </div>
             </div>
+                )
+            }
         </div>
     )
 }

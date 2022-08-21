@@ -15,6 +15,8 @@ const LoginScreen = () => {
     const { loading, error, userInfo } = userLogin
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
+    
+    console.log('location', location)
 
     useEffect(() => {
         if (!userInfo) return
@@ -24,18 +26,13 @@ const LoginScreen = () => {
         }
     }, [navigate, userInfo, redirect])
 
-    // useEffect(() => {
-    //     console.log(userInfo)
-    // }, [userInfo])
-
-
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(login(email, password))
     }
 
     return (
-        <div className="h-full w-1/3 mx-auto my-8" style={{ height: `calc(100vh - 12rem)`}}>
+        <div className="h-full w-1/3 mx-auto my-8" style={{ minHeight: `calc(100vh - 11rem)`}}>
             <h1 className="uppercase text-3xl font-semibold mb-6">Sign in</h1>
             <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                 <label

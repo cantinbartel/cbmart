@@ -20,7 +20,8 @@ const PlaceOrderScreen = () => {
 
     cart.taxPrice = Number.parseFloat((cart.itemsPrice * 0.21)).toFixed(2)
 
-    cart.totalPrice = Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)
+    cart.totalPrice = Number(cart.itemsPrice) + Number(cart.shippingPrice)
+    // cart.totalPrice = Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)
 
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, success, error } = orderCreate
@@ -44,7 +45,7 @@ const PlaceOrderScreen = () => {
         }))
     }
     return (
-        <div style={{ minHeight: `calc(100vh - 10rem)`}}>
+        <div style={{ minHeight: `calc(100vh - 9.5rem)`}}>
             <div className="w-8/12 mx-auto">
                 <CheckoutSteps step1 step2 step3 step4 />
             </div>

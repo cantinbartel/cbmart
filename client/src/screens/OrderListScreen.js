@@ -32,7 +32,7 @@ const OrderListScreen = () => {
         navigate(`/order/${order?._id}`)
     }
   return (
-    <div className="w-10/12 mx-auto mt-6" style={{ minHeight: `calc(100vh - 10rem)`}}>
+    <div className="w-10/12 mx-auto mt-6" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
         <h1 className="uppercase text-3xl font-semibold mb-6">Orders</h1>
         { loading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
             <table className="w-full">

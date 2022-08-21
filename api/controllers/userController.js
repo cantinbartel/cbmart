@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler"
-import generateToken from "../utils/generateToken.js";
+import generateToken from "../utils/generateToken.js"
 import User from "../models/userModel.js"
 
 // @desc Auth user & get token
@@ -24,7 +24,7 @@ const authUser = asyncHandler(async (req, res) => {
         res.status(401)
         throw new Error('Invalid email or password')
     }
-});
+})
 
 // @desc Get user profile
 // @route GET /api/users/profile
@@ -51,7 +51,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id)
 
     if (user) {
-        console.log('req.body', req.body)
         user.name = req.body.name || user.name
         user.email = req.body.email || user.email
         if (req.body.password) {

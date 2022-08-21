@@ -30,6 +30,7 @@ import { CART_RESET } from '../constants/cartConstants'
 import axios from 'axios'
 
 
+
 export const login = (email, password) => async (dispatch) => {
     try {
         dispatch({
@@ -77,6 +78,8 @@ export const logout = () => (dispatch) => {
     dispatch({ type: ORDER_LIST_MY_RESET })
     dispatch({ type: ORDER_LIST_RESET })
     dispatch({ type: CART_RESET })
+    console.log('location().pathname', window.location.origin + '/')
+    window.location = window.location.origin + '/'
 }
 
 export const register = (name, email, password) => async (dispatch) => {
@@ -167,6 +170,9 @@ export const getUserUpdateProfile = (user) => async (dispatch, getState) => {
 
         dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data })
 
+        dispatch({ type: USER_LOGIN_SUCCESS , payload: data })
+
+        localStorage.setItem('userInfo', JSON.stringify(data))
     } catch (error) {
         dispatch({
             type: USER_UPDATE_PROFILE_FAIL,

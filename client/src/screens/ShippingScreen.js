@@ -30,7 +30,7 @@ const ShippingScreen = () => {
         console.log('text submitted')
     }
     return (
-        <div className="w-8/12 mx-auto" style={{ minHeight: `calc(100vh - 10rem)`}}>
+        <div className="w-8/12 mx-auto" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
             {/* <CheckoutSteps /> */}
             <CheckoutSteps step1 step2 />
             <h1 className="font-semibold text-2xl uppercase mb-8">Shipping</h1>

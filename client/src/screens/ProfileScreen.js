@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getUserDetails, getUserUpdateProfile } from '../actions/userActions'
 import { listMyOrders } from '../actions/orderActions'
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 import { ImCross } from 'react-icons/im'
 
-const ProfileScreen = () => {
+const ProfileScreen = () => { 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -33,7 +34,8 @@ const ProfileScreen = () => {
         if (!userInfo) {
             navigate('/login')
         } else {
-            if (!user || !user.name) {
+            if (!user || !user.name || success) {
+                dispatch({ type: USER_UPDATE_PROFILE_RESET  })
                 dispatch(getUserDetails('profile'))
                 dispatch(listMyOrders())
             } else {
@@ -41,7 +43,7 @@ const ProfileScreen = () => {
                 setEmail(user.email)
             }
         }
-    }, [dispatch, navigate, userInfo, user])
+    }, [dispatch, navigate, userInfo, user, success])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -54,7 +56,7 @@ const ProfileScreen = () => {
     }
 
     return (
-        <div className="w-full h-full flex justify-start items-start text-gray-600" style={{ minHeight: `calc(100vh - 9rem)`}}>
+        <div className="w-10/12 h-full mx-auto flex justify-start items-start text-gray-600" style={{ minHeight: `calc(100vh - 8rem)`}}>
             <div className="h-full w-3/12 my-8 mx-8">
                 <h1 className="uppercase text-3xl font-semibold mb-6">User Profile</h1>
                 <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
@@ -97,7 +99,7 @@ const ProfileScreen = () => {
                         value={confirmPassword}
                         onChange={e => setConfirmPassword(e.target.value)} />
                     <button
-                        className="uppercase bg-black text-white font-semibold px-3 py-2 rounded"
+                        className="uppercase bg-black text-white font-semibold px-3 py-2 rounded mt-4"
                         type="submit">update</button>
                 </form>
                 {message && <p>{message}</p>}

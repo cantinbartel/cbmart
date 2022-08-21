@@ -58,7 +58,7 @@ const ProductListScreen = () => {
     }
 
   return (
-    <div className="w-10/12 mx-auto mt-6" style={{ minHeight: `calc(100vh - 10rem)`}}>
+    <div className="w-10/12 mx-auto mt-6" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
         <div className="w-full flex justify-between items-center">
             <h1 className="uppercase text-3xl font-semibold mb-6">Products</h1>
             <button className="capitalize bg-black text-white py-2 px-4 rounded" onClick={() => navigate('/admin/products/create')}>

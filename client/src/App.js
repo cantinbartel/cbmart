@@ -47,7 +47,6 @@ function App() {
         <Route path='/page/:pageNumber' element={<HomeScreen />} exact />
         <Route path='/search/:keyword/page/:pageNumber' element={<HomeScreen />} exact />
         <Route path='/' element={<HomeScreen />} exact />
-        {/* <Route path='/' element={<HomeScreen />} /> */}
       </Routes>
       <Footer />
     </>

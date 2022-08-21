@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import Rating from '../components/Rating'
+import Meta from '../components/Meta'
 import { listProductDetails, createProductReview } from '../actions/productAction'
 import { FiLoader } from "react-icons/fi"
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
@@ -45,9 +46,9 @@ const ProductScreen = () => {
     }
 
     return (
-        <>
-            <div className='flex flex-col items-start w-10/12 mx-auto mt-12'>
-            {/* <div className='flex flex-col items-start w-10/12 mx-auto mt-12' style={{ minHeight: `calc(100vh - 12rem)`}}> */}
+        <>  
+            {/* <div className='flex flex-col items-start w-10/12 mx-auto mt-12'> */}
+            <div className='flex flex-col items-start w-10/12 mx-auto mt-12' style={{ minHeight: `calc(100vh - 8rem)`}}>
                 <Link to='/'>
                     <span className='font-bold mb-8'>GO BACK</span>
                 </Link>
@@ -56,7 +57,8 @@ const ProductScreen = () => {
                 ) : error ? (
                     <h3 className='text-2xl mt-36 mb-60'>{error}</h3>
                 ) : (
-                    <>
+                    <>  
+                        <Meta title={product.name} />
                         <div className='flex justify-start items-start'>
                             <img src={product.image} alt={product.name} className='w-4/10' />
                             <div className='flex flex-col justify-start items-start w-3/10 px-6'>
@@ -64,9 +66,9 @@ const ProductScreen = () => {
                                 <Rating value={product.rating} text={`${product.numReviews} reviews`} />
                                 <p>{product.description}</p>
                             </div>
-                            <div className='flex flex-col justify-start w-3/10 px-6'>
-                                <p className='flex justify-between'>Price: {product.price}&nbsp;€</p>
-                                <p>Status: {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}</p>
+                            <div className='flex flex-col justify-center w-3/10 text-lg' style={{paddingLeft: '4%'}}>
+                                <p className='flex'>Price:&nbsp;<span className='font-semibold'>{product.price}</span>&nbsp;€</p>
+                                <p>Status: <span className='font-semibold'>{product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
                                 {product.countInStock > 0 && (
                                     <label>
                                         quantity:

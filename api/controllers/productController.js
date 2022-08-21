@@ -5,7 +5,7 @@ import Product from "../models/productModel.js";
 // @route GET /api/products
 // @access Public
 const getProducts = asyncHandler(async (req, res) => {
-    const pageSize = 2
+    const pageSize = 8
     const page = Number(req.query.pageNumber) || 1
     const keyword = req.query.keyword ? {
         name: {
@@ -70,7 +70,7 @@ const createProduct = asyncHandler(async (req, res) => {
 }) 
 
 // @desc Update a product
-// @route UPDATE /api/products/:id
+// @route PUT /api/products/:id
 // @access Private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
     const {
@@ -133,4 +133,20 @@ const createProductReview = asyncHandler(async (req, res) => {
     }
 }) 
 
-export { getProducts, getProductById, deleteProduct, createProduct, updateProduct, createProductReview }
+// @desc Get top rated products
+// @route POST /api/products/top
+// @access Public
+const getTopProducts = asyncHandler(async (req, res) => {
+    const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+    res.json(products)
+}) 
+
+export { 
+    getProducts, 
+    getProductById, 
+    deleteProduct, 
+    createProduct, 
+    updateProduct, 
+    createProductReview,
+    getTopProducts
+} 
