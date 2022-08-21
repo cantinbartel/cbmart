@@ -11,7 +11,8 @@
     "client": "npm run start2 --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node api/seeder",
-    "data:destroy": "node api/seeder -d"
+    "data:destroy": "node api/seeder -d",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "cantin bartel",
   "license": "ISC",
