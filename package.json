@@ -4,6 +4,7 @@
   "description": "ecommerce test project",
   "main": "app.js",
   "type": "module",
+  "engines": { "node": "18.x" },
   "scripts": {
     "start": "node api/app",
     "server": "nodemon api/app",
