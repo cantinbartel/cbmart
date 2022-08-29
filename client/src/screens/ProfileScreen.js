@@ -56,8 +56,8 @@ const ProfileScreen = () => {
     }
 
     return (
-        <div className="w-10/12 h-full mx-auto flex justify-start items-start text-gray-600" style={{ minHeight: `calc(100vh - 8rem)`}}>
-            <div className="h-full w-3/12 my-8 mx-8">
+        <div className="w-10/12 h-full mx-auto mt-24 mb-40 flex flex-col lg:flex-row justify-start items-center lg:items-start text-gray-600">
+            <div className="h-full w-11/12 lg:w-3/12 mx-8 pt-6">
                 <h1 className="uppercase text-3xl font-semibold mb-6">User Profile</h1>
                 <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                     <label
@@ -107,11 +107,12 @@ const ProfileScreen = () => {
                 {success && <p>Profile Updated</p>}
                 {loading && <p>Loading</p>}
             </div>
-            <div className="h-full w-9/12 my-8 mx-8">
+            <div className="h-full w-9/12 mx-8 pt-6 mt-8 lg:mt-0">
                 <h1 className="uppercase text-3xl font-semibold mb-6">My Orders</h1>
                 {loadingOrders ? <p>Loading...</p> :
                     errorOrders ? <p>{errorOrders}</p> : (
-                        <table className="w-full">
+                        <>
+                        <table className="hidden lg:block w-full">
                             <thead className="w-full border border-gray-200">
                                 <tr className='py-4'>
                                     <th className="px-2 py-3 text-left">ID</th>
@@ -143,6 +144,25 @@ const ProfileScreen = () => {
                                 ))}
                             </tbody>
                         </table>
+                        <div className="lg:hidden">
+                            {orders.map((order, i) => (
+                                <div key={i}>
+                                    ORDER #{i + 1}
+                                    <p>ID: {order._id}</p>
+                                    <p>DATE: {order.createdAt.substring(0, 10)}</p>
+                                    <p>TOTAL: {order.totalPrice}</p>
+                                    <p>PAID: {order.isPaid ? order.paidAt.substring(0, 10) : <ImCross className="text-red-400" />}</p>
+                                    <p>DELIVERED: {order.isDelivered ? order.deliveredAt.substring(0, 10) : <ImCross className="text-red-400" />}</p>
+                                    <Link to={`/order/${order._id}`}>
+                                        <button className="px-2 py-1 mx-auto cursor-pointer bg-black text-white rounded mt-3 mb-6">Details</button>
+                                    </Link>
+                                    {i + 1 !== orders.length && (
+                                        <hr className='w-full border mt-2 mb-4' />
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                        </>
                     )}
             </div>
         </div>

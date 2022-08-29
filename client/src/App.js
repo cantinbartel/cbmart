@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { Routes, Route } from "react-router-dom"
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Drawer from "./components/Drawer"
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
 import CartScreen from "./screens/CartScreen"
@@ -20,9 +22,11 @@ import ProductCreateScreen from "./screens/ProductCreateScreen"
 import OrderListScreen from "./screens/OrderListScreen"
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(true)
   return (
     <>
-      <Header />
+      <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Drawer menuOpen={menuOpen} />
       <Routes>
         <Route path='/login' element={<LoginScreen />} />
         <Route path='/register' element={<RegisterScreen />} />

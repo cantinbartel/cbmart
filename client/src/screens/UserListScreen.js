@@ -34,10 +34,11 @@ const UserListScreen = () => {
     console.log('users', users)
     console.log('userList', userList)
   return (
-    <div className="w-10/12 mx-auto mt-6" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
-        <h1 className="uppercase text-3xl font-semibold mb-6">Users</h1>
+    <div className="w-10/12 mx-auto mt-24" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
+        <h1 className="uppercase text-3xl font-semibold mb-6 pt-6">Users</h1>
         { loading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
-            <table className="w-full">
+            <>
+            <table className="w-full hidden lg:block">
                 <thead className="w-full border border-gray-200">
                     <tr className='py-4'>
                         <th className="px-2 py-3 text-left">ID</th>
@@ -69,6 +70,29 @@ const UserListScreen = () => {
                     ))}
                 </tbody>
             </table>
+                <div className="lg:hidden mt-12">
+                    {users?.map((user, i) => (
+                        <div key={user._id}>
+                            <p>ID: {user._id}</p>
+                            <p>NAME: {user.name}</p>
+                            <p>EMAIL: {user.email}</p>
+                            <p>ADMIN: {user.isAdmin ? 
+                                <ImCheckmark className="text-green-400" /> : (
+                                <ImCross className="text-red-400" />
+                            )}</p>
+                            <Link to={`/admin/user/${user?._id}/edit`}>
+                                <button className="px-2 py-1 text-2xl mx-auto cursor-pointer mt-4 mr-2"><FaUserEdit /></button>
+                            </Link>
+                            <button 
+                                className="px-2 py-1 mx-auto text-xl cursor-pointer"
+                                onClick={() => deleteHandler(user._id)}><FaTrashAlt /></button>
+                            {i + 1 !== users.length && (
+                                <hr className='w-full border mt-2 mb-8 ' />
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </>
         )}
     </div>
   )

@@ -50,21 +50,21 @@ const UserEditScreen = (props) => {
     }
 
     return (
-        <>
+        <div className='h-full mt-24 w-10/12 mx-auto mb-40 lg:mb-72'>
             <Link to='/admin/userlist'>
                     <span className='font-bold mb-8'>GO BACK</span>
             </Link>
             { loadingUpdate && <p>Loading...</p> }
             { errorUpdate && <p>{errorUpdate}</p> }
             {loading ? <p>Loading...</p> : error ? <p>{error}</p> : (
-                <div className="h-full w-1/3 mx-auto my-8">
-                    <h1 className="uppercase text-3xl font-semibold mb-6">Edit User</h1>
+                <div className="h-full w-full lg:w-1/3 mx-auto mb-8 my-8">
+                    <h1 className="uppercase text-3xl font-semibold mb-6 text-center lg:text-left">Edit User</h1>
                     <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                         <label
                             className="capitalize text-gray-600 font-semibold mb-1.5"
                             htmlFor="name">name</label>
                         <input
-                            className="w-full px-4 py-2 bg-gray-100 font-semibold mb-4"
+                            className="w-full px-4 py-2 bg-gray-100 font-semibold mb-6 lg:mb-4"
                             id="name" 
                             type="text"
                             placeholder="Enter name"
@@ -74,7 +74,7 @@ const UserEditScreen = (props) => {
                             className="capitalize text-gray-600 font-semibold mb-1.5"
                             htmlFor="email">email address</label>
                         <input
-                            className="w-full px-4 py-2 bg-gray-100 font-semibold mb-4"
+                            className="w-full px-4 py-2 bg-gray-100 font-semibold mb-6 lg:mb-4"
                             id="email" 
                             type="text"
                             placeholder="Enter email"
@@ -90,11 +90,11 @@ const UserEditScreen = (props) => {
                                 checked={isAdmin}
                                 onChange={e => setIsAdmin(e.target.checked)} />
                         </div>
-                        <button className="uppercase bg-black text-white font-semibold px-3 py-2 rounded">update</button>
+                        <button className="uppercase bg-black text-white font-semibold px-3 py-2 rounded mt-4 lg:mt-0 self-center lg:self-start">update</button>
                     </form>
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

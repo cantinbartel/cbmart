@@ -85,15 +85,15 @@ const ProductEditScreen = () => {
     }
 
     return (
-        <>
+        <div className='mt-24 w-screen overflow-hidden lg:w-10/12 mx-auto'>
             <Link to='/admin/productlist'>
-                    <span className='font-bold mb-8'>GO BACK</span>
+                    <span className='font-bold mb-8 ml-4 lg:ml-0'>GO BACK</span>
             </Link>
             { loadingUpdate && <p>Loading ...</p> }
             { errorUpdate && <p>{errorUpdate}</p> }
             {loading ? <p>Loading...</p> : error ? <p>{error}</p> : (
-                <div className="h-full w-1/3 mx-auto my-8">
-                    <h1 className="uppercase text-3xl font-semibold mb-6">Edit Product</h1>
+                <div className="h-full w-10/12 lg:w-1/2 mx-auto my-8 ">
+                    <h1 className="uppercase text-3xl font-semibold mb-6 text-center lg:text-left">Edit Product</h1>
                     <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                         <label
                             className="capitalize text-gray-600 font-semibold mb-1.5"
@@ -134,7 +134,7 @@ const ProductEditScreen = () => {
                             onChange={uploadFileHandler}/>
                         {uploading && <p>loading...</p>}
                         <label
-                             className="capitalize text-gray-600 font-semibold mb-1.5"
+                             className="capitalize text-gray-600 font-semibold mb-1.5 mt-4"
                             htmlFor="brand">Brand</label>
                         <input
                             className="w-full px-4 py-2 bg-gray-100 font-semibold mb-4"
@@ -166,18 +166,18 @@ const ProductEditScreen = () => {
                         <label
                             className="capitalize text-gray-600 font-semibold mb-1.5"
                             htmlFor="description">Description</label>
-                        <input
-                            className="w-full px-4 py-2 bg-gray-100 font-semibold mb-4"
+                        <textarea
+                            className="w-full h-40 px-4 py-2 bg-gray-100 font-semibold mb-4"
                             id="description" 
                             type="text"
                             placeholder="Enter description"
                             value={description}
                             onChange={e => setDescription(e.target.value)} />
-                        <button className="uppercase bg-black text-white font-semibold px-3 py-2 rounded">update</button>
+                        <button className="uppercase bg-black text-white font-semibold px-3 py-2 rounded mt-4 lg:mt-0 self-center lg:self-start">update</button>
                     </form>
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

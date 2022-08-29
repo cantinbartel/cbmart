@@ -37,8 +37,8 @@ const RegisterScreen = () => {
     }
 
     return (
-        <div className="h-full w-1/3 mx-auto my-8" style={{ minHeight: `calc(100vh - 11rem)`}}>
-            <h1 className="uppercase text-3xl font-semibold mb-6">Sign up</h1>
+        <div className="h-full w-9/12 lg:w-1/3 mx-auto mt-24 mb-8 lg:my-8" style={{ minHeight: `calc(100vh - 12rem)`}}>
+            <h1 className="uppercase text-3xl font-semibold mt-24 lg:mt-32 pt-6 lg:pt-0 mb-6 text-center lg:text-left">Sign up</h1>
             <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                 <label
                     className="capitalize text-gray-600 font-semibold mb-1.5"
@@ -78,9 +78,9 @@ const RegisterScreen = () => {
                     placeholder="Confirm password"
                     value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)} />
-                <button className="uppercase bg-black text-white font-semibold px-3 py-2 rounded">register</button>
+                <button className="uppercase bg-black text-white font-semibold px-3 py-2 rounded self-center lg:self-start mt-4 lg:mt-0">register</button>
             </form>
-            <div className="flex justify-start mt-2.5">
+            <div className="flex justify-start mt-6 lg:mt-2.5">
                 <p className="capitalize mr-1 text-gray-800"> have an account?</p>
                 <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
                     <p className="capitalize font-semibold cursor-pointer hover:text-gray-800">Login</p>

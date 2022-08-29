@@ -32,8 +32,8 @@ const LoginScreen = () => {
     }
 
     return (
-        <div className="h-full w-1/3 mx-auto my-8" style={{ minHeight: `calc(100vh - 11rem)`}}>
-            <h1 className="uppercase text-3xl font-semibold mb-6">Sign in</h1>
+        <div className="max-h-screen overflow-hidden w-9/12 lg:w-1/3 mx-auto snap-none mt-24 mb-52 lg:mb-80">
+            <h1 className="uppercase text-3xl font-semibold mt-8 mb-6 text-center lg:text-left">Sign in</h1>
             <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                 <label
                     className="capitalize text-gray-600 font-semibold mb-1.5"
@@ -54,9 +54,9 @@ const LoginScreen = () => {
                     placeholder="Enter password"
                     value={password}
                     onChange={e => setPassword(e.target.value)} />
-                <button className="uppercase bg-black text-white font-semibold px-3 py-2 rounded">sign in</button>
+                <button className="uppercase bg-black text-white font-semibold px-3 py-2 rounded self-center lg:self-start mt-4 lg:mt-0">sign in</button>
             </form>
-            <div className="flex justify-start mt-2.5">
+            <div className="flex justify-start mt-6 lg:mt-2.5">
                 <p className="capitalize mr-1 text-gray-800"> New customer?</p>
                 <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
                     <p className="capitalize font-semibold cursor-pointer hover:text-gray-800">Register</p>

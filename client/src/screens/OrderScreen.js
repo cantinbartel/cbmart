@@ -80,14 +80,14 @@ const OrderScreen = () => {
     { loading && <p>Loading...</p> }
     { error && <p>{error}</p> }
     return (
-        <div className="w-10/12 mx-auto mt-6" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
-            <h1 className="text-2xl font-semibold uppercase">Order {order?._id}</h1>
-            {/* <div className="w-8/12 mx-auto">
-                    <CheckoutSteps step1 step2 step3 step4 />
-                </div> */}
-            <div className="flex justify-between items-start ml-4">
-                <div className="w-8/12">
-                    <h1 className="font-semibold text-lg uppercase mb-3 mt-6">Shipping</h1>
+        <div className="min-h-screen w-10/12 mx-auto mt-24 lg:-mb-12">
+            <div className="text-2xl font-semibold uppercase pt-6 flex flex-col lg:flex-row ml-4 lg:ml-0">
+                <p>Order</p> 
+                <p className="text-xl lg:text-2xl lg:ml-2">{order?._id}</p>
+            </div>
+            <div className="flex flex-col lg:flex-row justify-between items-start ml-4">
+                <div className="w-full lg:w-8/12">
+                    <h1 className="font-semibold text-lg uppercase mb-3 mt-8 lg:mt-6">Shipping</h1>
                     <p className="capitalize"><span className="font-semibold">Name:</span>&nbsp;{order?.user.name}</p>
                     <p className="capitalize"><span className="font-semibold">Email:</span>&nbsp;<a href={`mailto:${order?.user.email}`}>{order?.user.email}</a></p>
                     <p className="mb-4">
@@ -97,33 +97,33 @@ const OrderScreen = () => {
                     </p>
                     {order?.isDelivered ? <p className="font-semibold capitalize">Delivered on {order?.deliveredAt}</p> : <p className="font-semibold capitalize">Not Delivered</p>}
                     <hr />
-                    <h1 className="font-semibold text-lg uppercase mb-3 mt-4">Payment Method</h1>
+                    <h1 className="font-semibold text-lg uppercase mb-3 mt-8 lg:mt-4">Payment Method</h1>
                     <p className="mb-4">
                         <span className="font-semibold capitalize">Method:</span>&nbsp;
                         {order?.paymentMethod}
                     </p>
                     {order?.isPaid ? <p className="font-semibold capitalize">Paid on {order?.paidAt}</p> : <p className="font-semibold capitalize">Not Paid</p>}
                     <hr />
-                    <h1 className="font-semibold text-lg uppercase mb-3 mt-4">Order Items</h1>
+                    <h1 className="font-semibold text-lg uppercase mb-3 mt-8 lg:mt-4">Order Items</h1>
                     {order?.orderItems.length === 0 ?
                         <p>Order is empty</p> :
                         order?.orderItems.map((item, index) => (
                             <div key={index}>
-                                <div className={`flex justify-start items-start font-semibold m-4 ${index === 0 ? 'mt-8' : ''}`}>
-                                    <div className="flex justify-start items-start w-8/12">
-                                        <img className="w-8 rounded mr-8" src={item.image} />
+                                <div className={`flex flex-col lg:flex-row justify-start items-start font-semibold m-4 ${index === 0 ? 'mt-8' : ''}`}>
+                                    <div className="flex flex-col lg:flex-row justify-start items-start w-full lg:w-8/12 mb-2 lg:mb-0">
+                                        <img className="w-20 lg:w-8 rounded mr-8 mb-3 lg:mb-0" src={item.image} />
                                         <Link to={`/product/${item.product}`}>
                                             <p>{item.name}</p>
                                         </Link>
                                     </div>
                                     <p>{item.qty} x {item.price}€ = {item.qty * item.price}€</p>
                                 </div>
-                                {index !== lastIndex && <hr />}
+                                {index !== lastIndex && <hr className='mb-8' />}
                             </div>
                         ))
                     }
                 </div>
-                <div className="w-3/10 text-sm mt-4">
+                <div className="w-7/10 lg:w-3/10 text-sm mt-8 lg:mt-4 mb-6 lg:mb-0">
                     <div className="flex flex-col">
                         <div className="border border-gray-300 py-3 pt-4 pb-6 pl-4">
                             <p className="font-semibold text-gray-800 text-xl uppercase">Order Summary</p>

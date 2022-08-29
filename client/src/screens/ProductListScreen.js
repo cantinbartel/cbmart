@@ -58,10 +58,10 @@ const ProductListScreen = () => {
     }
 
   return (
-    <div className="w-10/12 mx-auto mt-6" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
-        <div className="w-full flex justify-between items-center">
-            <h1 className="uppercase text-3xl font-semibold mb-6">Products</h1>
-            <button className="capitalize bg-black text-white py-2 px-4 rounded" onClick={() => navigate('/admin/products/create')}>
+    <div className="w-10/12 mx-auto mt-24" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
+        <div className="w-full flex justify-between items-center mb-8 lg:mb-0 pt-6">
+            <h1 className="uppercase text-3xl font-semibold mb-6 mt-4 lg:mt-0">Products</h1>
+            <button className="capitalize bg-black text-white py-2 px-4 rounded -mt-2 lg:-mt-0" onClick={() => navigate('/admin/products/create')}>
                 create product
             </button>
         </div>
@@ -71,7 +71,7 @@ const ProductListScreen = () => {
         { loadingCreate  && <p>Loading... </p> }
         { loading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
             <>
-                <table className="w-full">
+                <table className="w-full hidden lg:block">
                     <thead className="w-full border border-gray-200">
                         <tr className='py-4'>
                             <th className="px-2 py-3 text-left">ID</th>
@@ -102,6 +102,28 @@ const ProductListScreen = () => {
                         ))}
                     </tbody>
                 </table>
+                <div className="lg:hidden">
+                    {console.log('products', products)}
+                    {products?.map((product, i) => (
+                        <div key={product._id}>
+                            <div className='w-20 h-20 mx-auto mb-4' style={{ backgroundImage: `url(${product.image})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }} />
+                            <p>ID: {product._id}</p>
+                            <p>NAME: {product.name}</p>
+                            <p>PRICE: {product.price}</p>
+                            <p>CATEGORY: {product.category}</p>
+                            <p>BRAND: {product.brand}</p>
+                            <Link to={`/admin/product/${product?._id}/edit`}>
+                                <button className="px-2 py-1 text-xl mx-auto cursor-pointer mt-6 mr-2"><FiEdit /></button>
+                            </Link>
+                            <button 
+                                className="px-2 py-1 mx-auto text-xl cursor-pointer"
+                                onClick={() => deleteHandler(product._id)}><FaTrashAlt /></button>
+                            {i + 1 !== products.length && (
+                                <hr className='w-full border mt-2 mb-8' />
+                            )}
+                        </div>
+                    ))}
+                </div>
                 <div className='w-full flex justify-center mt-8'>
                     <Paginate page={page} pages={pages} isAdmin={true} />
                 </div>

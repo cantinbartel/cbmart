@@ -30,8 +30,8 @@ const CartScreen = () => {
     }
 
     return (
-        <div className="w-10/12 mx-auto font-semibold mt-6" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
-            <h1 className='text-2xl'>SHOPPING CART</h1>
+        <div className="w-10/12 mx-auto font-semibold mt-24 lg:mt-6" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
+            <h1 className='text-2xl pt-6 lg:pt-0'>SHOPPING CART</h1>
             {cartItems.length === 0 ? (
                 <div className="flex flex-col justify-center items-center" style={{ height: '60vh' }}>
                     <p className="mb-6">Your shopping is empty :(</p>
