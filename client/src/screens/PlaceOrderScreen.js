@@ -45,7 +45,7 @@ const PlaceOrderScreen = () => {
         }))
     }
     return (
-        <div style={{ minHeight: `calc(100vh - 9.5rem)`}}>
+        <div className='mt-24' style={{ minHeight: `calc(100vh - 9.5rem)`}}>
             <div className="w-8/12 mx-auto">
                 <CheckoutSteps step1 step2 step3 step4 />
             </div>

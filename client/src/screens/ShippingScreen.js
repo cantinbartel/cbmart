@@ -30,10 +30,9 @@ const ShippingScreen = () => {
         console.log('text submitted')
     }
     return (
-        <div className="w-8/12 mx-auto" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
-            {/* <CheckoutSteps /> */}
-            <CheckoutSteps step1 step2 />
-            <h1 className="font-semibold text-2xl uppercase mb-8">Shipping</h1>
+        <div className="w-8/12 mx-auto mt-24" style={{ minHeight: `calc(100vh - 9.5rem)`}}>
+            <CheckoutSteps step1 step2 className="hidden md:block" />
+            <h1 className="font-semibold text-2xl uppercase mb-8 pt-6 lg:pt-0">Shipping</h1>
             <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                 <label
                     className="capitalize text-gray-600 font-semibold mb-1.5"
@@ -76,7 +75,7 @@ const ShippingScreen = () => {
                     required
                     onChange={e => setCountry(e.target.value)} />
                 <button
-                    className="uppercase bg-black text-white font-semibold px-3 py-2 rounded"
+                    className="uppercase bg-black text-white font-semibold px-3 py-2 rounded mt-6 lg:mt-4 mx-auto md:mx-0"
                     type="submit">Continue</button>
             </form>
         </div>

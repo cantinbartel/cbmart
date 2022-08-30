@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
+const CheckoutSteps = ({ step1, step2, step3, step4, className }) => {
     return (
-        <nav className="w-full font-semibold text-gray-700 mt-6 mb-8">
+        <nav className={`w-full font-semibold text-gray-700 mt-6 mb-8 ${className}`}>
             <ul className="flex justify-around items-center mx-auto capitalize">
                 <li className="cursor-pointer">
                     {step1 ? <Link to='/login'>sign in</Link> : <div className="text-gray-300 cursor-not-allowed">sign in</div>}
