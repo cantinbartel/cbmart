@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Routes, Route } from "react-router-dom"
 import Header from './components/Header'
-import Footer from './components/Footer'
 import Drawer from "./components/Drawer"
 import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen'
@@ -52,7 +51,6 @@ function App() {
         <Route path='/search/:keyword/page/:pageNumber' element={<HomeScreen />} exact />
         <Route path='/' element={<HomeScreen />} exact />
       </Routes>
-      <Footer />
     </>
   )
 }

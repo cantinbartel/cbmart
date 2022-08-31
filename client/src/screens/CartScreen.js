@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCart } from '../actions/cartAction'
 import { FaTrash } from 'react-icons/fa'
 import emptyCart from '../assets/icons/empty-cart.png'
+import Footer from '../components/Footer'
 
 const CartScreen = () => {
     const { id } = useParams()
@@ -30,7 +31,8 @@ const CartScreen = () => {
     }
 
     return (
-        <div className="w-full lg:w-10/12 h-screen mx-auto font-semibold mt-24">
+        <>
+        <div className="w-full lg:w-10/12 mx-auto font-semibold pt-24 overflow-hidden" style={{ minHeight: `calc(100vh - 4rem)`}}>
             <h1 className='text-3xl pt-6 mb-8 lg:mb-20 text-center lg:text-left'>SHOPPING CART</h1>
             {cartItems.length === 0 ? (
                 <div className="flex flex-col justify-center items-center" style={{ height: '60vh' }}>
@@ -117,6 +119,8 @@ const CartScreen = () => {
                 )
             }
         </div>
+        <Footer />
+        </>
     )
 }
 

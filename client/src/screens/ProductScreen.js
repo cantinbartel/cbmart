@@ -7,6 +7,7 @@ import { listProductDetails, createProductReview } from '../actions/productActio
 import { FiLoader } from "react-icons/fi"
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import { BsStar, BsStarFill, BsStarHalf } from 'react-icons/bs'
+import Footer from '../components/Footer'
 
 const ProductScreen = () => {
     const [qty, setQty] = useState(1)
@@ -46,9 +47,8 @@ const ProductScreen = () => {
     }
 
     return (
-        <>  
-            {/* <div className='flex flex-col items-start w-10/12 mx-auto mt-12'> */}
-            <div className='flex flex-col items-start w-11/12 lg:w-10/12 mx-auto mt-24' style={{ minHeight: `calc(100vh - 9rem)`}}>
+        <div className="w-screen">  
+            <div className='flex flex-col items-start w-11/12 lg:w-10/12 mx-auto pt-24'>
                 <Link to='/'>
                     <span className='font-bold mb-8'>GO BACK</span>
                 </Link>
@@ -59,7 +59,7 @@ const ProductScreen = () => {
                 ) : (
                     <>  
                         <Meta title={product.name} />
-                        <div className='flex flex-col lg:flex-row justify-start items-center lg:items-start mt-6 lg:mt-0'>
+                        <div className='flex flex-col lg:flex-row justify-start items-center lg:items-start pt-6 lg:mt-0'>
                             <img src={product.image} alt={product.name} className='w-full lg:w-4/10' />
                             <div className='flex flex-col justify-start items-start w-full lg:w-3/10 px-0 lg:px-6 mt-6 lg:mt-0'>
                                 <p className='text-2xl font-semibold uppercase'>{product.name}</p>
@@ -155,20 +155,10 @@ const ProductScreen = () => {
                         </div>
                     </>
                 )}
+                
             </div>
-            {/* <div className='flex flex-col items-start w-10/12 mx-auto mt-12'>
-                <h2>Reviews</h2>
-                    {product.reviews.length === 0 && <p>No Reviews</p>}
-                    {product.reviews.map((review) => (
-                        <div key={review._id}>
-                            <strong>{review.name}</strong>
-                            <Rating value={review.rating} />
-                            <p>{review.createdAt.substring(0, 10)}</p>
-                            <p>{review.comment}</p>
-                        </div>
-                    ))}
-            </div> */}
-        </>
+            <Footer />
+        </div>
     )
 }
 

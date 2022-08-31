@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { createOrder } from '../actions/orderActions'
+import Footer from '../components/Footer'
 
 const PlaceOrderScreen = () => {
     const navigate = useNavigate()
@@ -45,80 +46,83 @@ const PlaceOrderScreen = () => {
         }))
     }
     return (
-        <div className='mt-24' style={{ minHeight: `calc(100vh - 9.5rem)`}}>
-            <div className="w-8/12 mx-auto">
-                <CheckoutSteps step1 step2 step3 step4 />
-            </div>
-            <div className="w-10/12 mx-auto flex justify-between items-start">
-                <div className="w-8/12">
-                    <h1 className="font-semibold text-2xl uppercase mb-3">Shipping</h1>
-                    <p className="mb-4">
-                        <span className="font-semibold capitalize">Address:</span>&nbsp;
-                        {cart.shippingAddress.address},&nbsp;{cart.shippingAddress.vity}&nbsp;
-                        {cart.shippingAddress.postalCode},&nbsp;{cart.shippingAddress.country}
-                    </p>
-                    <hr />
-                    <h1 className="font-semibold text-2xl uppercase mb-3 mt-4">Payment Method</h1>
-                    <p className="mb-4">
-                        <span className="font-semibold capitalize">Method:</span>&nbsp;
-                        {cart.paymentMethod}
-                    </p>
-                    <hr />
-                    <h1 className="font-semibold text-2xl uppercase mb-3 mt-4">Order Items</h1>
-                    {cart.cartItems.length === 0 ?
-                        <p>Your cart is empty</p> :
-                        cart.cartItems.map((item, index) => (
-                            <>
-                                <div className={`flex justify-start items-start font-semibold m-4 ${index === 0 ? 'mt-8' : ''}`}>
-                                    <div className="flex justify-start items-start w-8/12">
-                                        <img className="w-8 rounded mr-8" src={item.image} />
-                                        <Link to={`/product/${item.product}`}>
-                                            <p>{item.name}</p>
-                                        </Link>
-                                    </div>
-                                    <p>{item.qty} x {item.price}€ = {item.qty * item.price}€</p>
-                                </div>
-                                {index !== lastIndex && <hr />}
-                            </>
-                        ))
-                    }
+        <>
+            <div className='pt-24' style={{ minHeight: `calc(100vh - 4rem)`}}>
+                <div className="w-8/12 mx-auto">
+                    <CheckoutSteps step1 step2 step3 step4 className="hidden lg:block" />
                 </div>
-                <div className="w-3/10 text-sm mt-4">
-                    <div className="flex flex-col">
-                        <div className="border border-gray-300 py-3 pt-4 pb-6 pl-4">
-                            <p className="font-semibold text-gray-800 text-xl uppercase">Order Summary</p>
-                        </div>
-                        <div className="flex justify-start items-center border border-gray-300 py-3 px-4">
-                            <p className="font-semibold text-gray-600 capitalize w-40">Items</p>
-                            <p className="text-gray-600">{cart.itemsPrice}€</p>
-                        </div>
-                        {/* <div className="p-3" style={{ borderWidth: '0 1px 1px 1px', borderColor: 'rgb(209 213 219)' }} /> */}
-                        <div className="flex justify-start items-center border border-gray-300 py-3 px-4">
-                            <p className="font-semibold text-gray-600 capitalize w-40">Shipping</p>
-                            <p className="text-gray-600">{cart.shippingPrice}€</p>
-                        </div>
-                        {/* <div className="p-3" style={{ borderWidth: '0 1px 1px 1px', borderColor: 'rgb(209 213 219)' }} /> */}
-                        <div className="flex justify-start items-center border border-gray-300 py-3 px-4">
-                            <p className="font-semibold text-gray-600 capitalize w-40">Tax</p>
-                            <p className="text-gray-600">{cart.taxPrice}€</p>
-                        </div>
-                        {/* <div className="p-3" style={{ borderWidth: '0 1px 1px 1px', borderColor: 'rgb(209 213 219)' }} /> */}
-                        <div className="flex justify-start items-center border border-gray-300 py-3 px-4">
-                            <p className="font-semibold text-gray-600 capitalize w-40">Total</p>
-                            <p className="text-gray-600">{cart.totalPrice}€</p>
-                        </div>
-                        {error && <p>{error}</p>}
-                        <div className="p-3" style={{ borderWidth: '0 1px 1px 1px', borderColor: 'rgb(209 213 219)' }}>
-                            <button
-                                className="uppercase w-full bg-black text-white font-semibold px-3 py-2 rounded"
-                                type="submit"
-                                disabled={cart.cartItems === 0}
-                                onClick={placeOrderHandler}>Place Order</button>
+                <div className="w-full lg:w-10/12 mx-auto flex flex-col lg:flex-row justify-between items-start pt-6 lg:pt-0 pl-4 lg:pt-0">
+                    <div className="w-full lg:w-8/12">
+                        <h1 className="font-semibold text-2xl uppercase mb-3">Shipping</h1>
+                        <p className="mb-4">
+                            <span className="font-semibold capitalize">Address:</span>&nbsp;
+                            {cart.shippingAddress.address},&nbsp;{cart.shippingAddress.vity}&nbsp;
+                            {cart.shippingAddress.postalCode},&nbsp;{cart.shippingAddress.country}
+                        </p>
+                        <hr />
+                        <h1 className="font-semibold text-2xl uppercase mb-3 mt-4">Payment Method</h1>
+                        <p className="mb-4">
+                            <span className="font-semibold capitalize">Method:</span>&nbsp;
+                            {cart.paymentMethod}
+                        </p>
+                        <hr />
+                        <h1 className="font-semibold text-2xl uppercase mb-3 mt-4">Order Items</h1>
+                        {cart.cartItems.length === 0 ?
+                            <p>Your cart is empty</p> :
+                            cart.cartItems.map((item, index) => (
+                                <>
+                                    <div className={`flex flex-col lg:flex-row justify-start items-start font-semibold m-4 ${index === 0 ? 'mt-8' : ''}`}>
+                                        <div className="flex justify-start items-start w-full lg:w-8/12">
+                                            <img className="w-20 lg:w-8 rounded mr-8" src={item.image} />
+                                            <Link to={`/product/${item.product}`}>
+                                                <p>{item.name}</p>
+                                            </Link>
+                                        </div>
+                                        <p className='mt-6 lg:mt-0'>{item.qty} x {item.price}€ = {item.qty * item.price}€</p>
+                                    </div>
+                                    {index !== lastIndex && <hr />}
+                                </>
+                            ))
+                        }
+                    </div>
+                    <div className="w-6/10 lg:w-3/10 text-sm mt-8 lg:mt-4 mb-8 self-center lg:self-start">
+                        <div className="flex flex-col">
+                            <div className="border border-gray-300 py-3 pt-4 pb-6 pl-4">
+                                <p className="font-semibold text-gray-800 text-xl uppercase">Order Summary</p>
+                            </div>
+                            <div className="flex justify-start items-center border border-gray-300 py-3 px-4">
+                                <p className="font-semibold text-gray-600 capitalize w-40">Items</p>
+                                <p className="text-gray-600">{cart.itemsPrice}€</p>
+                            </div>
+                            {/* <div className="p-3" style={{ borderWidth: '0 1px 1px 1px', borderColor: 'rgb(209 213 219)' }} /> */}
+                            <div className="flex justify-start items-center border border-gray-300 py-3 px-4">
+                                <p className="font-semibold text-gray-600 capitalize w-40">Shipping</p>
+                                <p className="text-gray-600">{cart.shippingPrice}€</p>
+                            </div>
+                            {/* <div className="p-3" style={{ borderWidth: '0 1px 1px 1px', borderColor: 'rgb(209 213 219)' }} /> */}
+                            <div className="flex justify-start items-center border border-gray-300 py-3 px-4">
+                                <p className="font-semibold text-gray-600 capitalize w-40">Tax</p>
+                                <p className="text-gray-600">{cart.taxPrice}€</p>
+                            </div>
+                            {/* <div className="p-3" style={{ borderWidth: '0 1px 1px 1px', borderColor: 'rgb(209 213 219)' }} /> */}
+                            <div className="flex justify-start items-center border border-gray-300 py-3 px-4">
+                                <p className="font-semibold text-gray-600 capitalize w-40">Total</p>
+                                <p className="text-gray-600">{cart.totalPrice}€</p>
+                            </div>
+                            {error && <p>{error}</p>}
+                            <div className="p-3" style={{ borderWidth: '0 1px 1px 1px', borderColor: 'rgb(209 213 219)' }}>
+                                <button
+                                    className="uppercase w-full bg-black text-white font-semibold px-3 py-2 rounded"
+                                    type="submit"
+                                    disabled={cart.cartItems === 0}
+                                    onClick={placeOrderHandler}>Place Order</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <Footer />
+        </>
     )
 }
 

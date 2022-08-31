@@ -17,7 +17,8 @@ const Drawer = ({menuOpen}) => {
     }
   return (
     <div 
-        className={`lg:hidden fixed text-white h-screen -mt-4 w-6/12 right-0 ${menuOpen ? 'transition overscroll-none' : 'translate-x-full transition'} cursor-pointer`} 
+        className={`lg:hidden fixed text-white h-screen pt-24 w-6/12 right-0 ${menuOpen ? 'transition overscroll-none' : 'translate-x-full transition'} cursor-pointer`} 
+        // className={`lg:hidden fixed text-white h-screen -mt-4 w-6/12 right-0 ${menuOpen ? 'transition overscroll-none' : 'translate-x-full transition'} cursor-pointer`} 
         style={{ backgroundColor: 'hsl(210, 10%, 38%)'}}>
         <div className="flex flex-col mt-6 ml-8">
             {userInfo && <p className="text-lg uppercase mr-2 my-3 mt-12">{userInfo.name}</p>}

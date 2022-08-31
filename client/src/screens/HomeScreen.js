@@ -12,6 +12,7 @@ import { listProducts } from '../actions/productAction'
 import Carousel from 'react-bootstrap/Carousel'
 import Slider from '../components/Slider'
 import Meta  from '../components/Meta'
+import Footer from '../components/Footer'
 
 const HomeScreen = () => {
     console.log('React Version', version)
@@ -27,19 +28,15 @@ const HomeScreen = () => {
     const { loading, error, products, page, pages } = productList
 
     return (
-        <>  
+        <div 
+            className="w-full h-full pt-24">  
             <Meta />
-            {/* {!keyword ? <Slider /> : (
-                <Link to='/'>
-                    <span className='font-bold mb-8'>GO BACK</span>
-                </Link>
-            )} */}
             {keyword && (
                 <Link to='/'>
                     <span className='font-bold mb-8'>GO BACK</span>
                 </Link>
             )}
-            <div className='w-10/12 mx-auto overflow-hidden mt-24 lg:-mb-12'>
+            <div className='w-10/12 mx-auto overflow-hidden lg:-mb-12'>
                 <div className='w-full flex justify-between'>
                     <h1 className='text-4xl mt-6 mb-10'>Latest Products</h1>
                     <SearchBox />
@@ -55,11 +52,12 @@ const HomeScreen = () => {
                         ))
                     )}
                 </div>
-                <div className='w-full flex justify-center'>
+                <div className='w-full flex justify-center mb-12'>
                     <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
                 </div>
+                <Footer />
             </div>
-        </>
+        </div>
     )
 }
 

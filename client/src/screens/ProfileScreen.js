@@ -5,6 +5,7 @@ import { getUserDetails, getUserUpdateProfile } from '../actions/userActions'
 import { listMyOrders } from '../actions/orderActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 import { ImCross } from 'react-icons/im'
+import Footer from '../components/Footer'
 
 const ProfileScreen = () => { 
     const [name, setName] = useState('')
@@ -56,7 +57,8 @@ const ProfileScreen = () => {
     }
 
     return (
-        <div className="w-10/12 h-full mx-auto mt-24 mb-40 flex flex-col lg:flex-row justify-start items-center lg:items-start text-gray-600">
+        <>
+        <div className="w-10/12 h-full mx-auto pt-24 mb-40 flex flex-col lg:flex-row justify-start items-center lg:items-start text-gray-600">
             <div className="h-full w-11/12 lg:w-3/12 mx-8 pt-6">
                 <h1 className="uppercase text-3xl font-semibold mb-6">User Profile</h1>
                 <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
@@ -166,6 +168,8 @@ const ProfileScreen = () => {
                     )}
             </div>
         </div>
+        <Footer />
+        </>
     )
 }
 
