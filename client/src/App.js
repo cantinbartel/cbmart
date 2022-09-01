@@ -21,7 +21,7 @@ import ProductCreateScreen from "./screens/ProductCreateScreen"
 import OrderListScreen from "./screens/OrderListScreen"
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(true)
+  const [menuOpen, setMenuOpen] = useState(false)
   return (
     <>
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />

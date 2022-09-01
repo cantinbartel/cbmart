@@ -6,6 +6,7 @@ import { listOrders } from '../actions/orderActions'
 import { ImCross, ImCheckmark } from 'react-icons/im'
 import { FaUserEdit, FaTrashAlt } from 'react-icons/fa'
 import Footer from '../components/Footer'
+import { FiLoader } from "react-icons/fi"
 
 const OrderListScreen = () => {
     const dispatch = useDispatch()
@@ -25,8 +26,7 @@ const OrderListScreen = () => {
         }
         dispatch(listOrders())
     }, [userInfo, dispatch])
-    console.log('orders', orders)
-    console.log('orderList', orderList)
+
     const handleDetails = (order) => {
         dispatch({ type: ORDER_DETAILS_RESET })
         navigate(`/order/${order?._id}`)
@@ -35,7 +35,7 @@ const OrderListScreen = () => {
     <>
         <div className="w-10/12 mx-auto pt-24" style={{ minHeight: `calc(100vh - 4rem)`}}>
             <h1 className="uppercase text-3xl font-semibold mb-6 pt-6">Orders</h1>
-            { loading ? <p>Loading...</p> : error ? <p>{error.message}</p> : (
+            { loading ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : error ? <p>{error.message}</p> : (
                 <>
                     <table className="w-full hidden lg:block">
                         <thead className="w-full border border-gray-200">

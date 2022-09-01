@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { login } from '../actions/userActions'
 import Footer from '../components/Footer'
+import { FiLoader } from "react-icons/fi"
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('')
@@ -16,14 +17,11 @@ const LoginScreen = () => {
     const { loading, error, userInfo } = userLogin
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
-    
-    console.log('location', location)
 
     useEffect(() => {
         if (!userInfo) return
         if (userInfo) {
             navigate(redirect)
-            console.log(redirect)
         }
     }, [navigate, userInfo, redirect])
 
@@ -66,7 +64,7 @@ const LoginScreen = () => {
                     </Link>
                 </div>
                 {error && <p>{error}</p>}
-                {loading && <p>Loading</p>}
+                {loading && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
             </div>
             <Footer />
         </>

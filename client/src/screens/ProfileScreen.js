@@ -6,6 +6,7 @@ import { listMyOrders } from '../actions/orderActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 import { ImCross } from 'react-icons/im'
 import Footer from '../components/Footer'
+import { FiLoader } from "react-icons/fi"
 
 const ProfileScreen = () => { 
     const [name, setName] = useState('')
@@ -107,11 +108,11 @@ const ProfileScreen = () => {
                 {message && <p>{message}</p>}
                 {error && <p>{error}</p>}
                 {success && <p>Profile Updated</p>}
-                {loading && <p>Loading</p>}
+                {loading && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
             </div>
             <div className="h-full w-9/12 mx-8 pt-6 mt-8 lg:mt-0">
                 <h1 className="uppercase text-3xl font-semibold mb-6">My Orders</h1>
-                {loadingOrders ? <p>Loading...</p> :
+                {loadingOrders ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> :
                     errorOrders ? <p>{errorOrders}</p> : (
                         <>
                         <table className="hidden lg:block w-full">

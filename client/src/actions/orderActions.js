@@ -29,9 +29,6 @@ export const createOrder = (order) => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState()
 
-        console.log('getState', getState())
-        console.log('userInfo.token', userInfo.token)
-
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -66,9 +63,6 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState()
 
-        console.log('getState', getState())
-        console.log('userInfo.token', userInfo.token)
-
         const config = {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
@@ -76,8 +70,6 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(`/api/orders/${id}`, config)
-
-        console.log('data', data)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -102,9 +94,6 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState()
 
-        console.log('getState', getState())
-        console.log('userInfo.token', userInfo.token)
-
         const config = {
             headers: {
                 'Content-Type': 'application/json',
@@ -113,8 +102,6 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(`/api/orders/${id}/pay`, paymentResult, config)
-
-        console.log('data', data)
 
         dispatch({
             type: ORDER_PAY_SUCCESS,
@@ -139,9 +126,6 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState()
 
-        console.log('getState', getState())
-        console.log('userInfo.token', userInfo.token)
-
         const config = {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
@@ -149,8 +133,6 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put(`/api/orders/${order._id}/deliver`, {}, config)
-
-        console.log('data', data)
 
         dispatch({
             type: ORDER_DELIVER_SUCCESS,
@@ -175,9 +157,6 @@ export const listMyOrders = () => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState()
 
-        console.log('getState', getState())
-        console.log('userInfo.token', userInfo.token)
-
         const config = {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
@@ -185,8 +164,6 @@ export const listMyOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(`/api/orders/myorders`, config)
-
-        console.log('data', data)
 
         dispatch({
             type: ORDER_LIST_MY_SUCCESS,
@@ -218,8 +195,6 @@ export const listOrders = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(`/api/orders`, config)
-
-        console.log('data', data)
 
         dispatch({
             type: ORDER_LIST_SUCCESS,

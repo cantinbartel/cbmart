@@ -16,7 +16,6 @@ const CartScreen = () => {
     const cart = useSelector(state => state.cart)
     const { cartItems } = cart
 
-    console.log(cartItems)
     useEffect(() => {
         if (id) dispatch(addToCart(id, qty))
     }, [dispatch, id, qty])
@@ -26,7 +25,6 @@ const CartScreen = () => {
     }
 
     const checkout = () => {
-        console.log('checkout')
         navigate('/login?redirect=/shipping')
     }
 
@@ -52,7 +50,7 @@ const CartScreen = () => {
                         <div className="w-full lg:w-6/10">
                             {cartItems.length > 0 && (
                                 cartItems.map((item, i) => (
-                                    <div className="w-full mx-auto">
+                                    <div key={item.product} className="w-full mx-auto">
                                         <div className={`flex flex-col lg:flex-row justify-start items-start w-full mt-4 ml-8 lg:ml-12 mx-auto ${i + 1 === cartItems.length ? 'mb-8' : 'mb-0'}`} key={item.product}>
                                             <img className="w-3/10 lg:w-1/10 rounded mr-6 mb-2 lg:mb-0" src={item.image} alt={item.name} />
                                             <Link to={`/roduct/${item.product}`}>

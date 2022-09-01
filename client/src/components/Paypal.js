@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 
 const Paypal = ({amount, setPaymentResult}) => {
-    console.log('amount', amount)
     const paypal = useRef()
     useEffect(() => {
         window.paypal?.Buttons({

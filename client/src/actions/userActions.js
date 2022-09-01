@@ -63,7 +63,6 @@ export const login = (email, password) => async (dispatch) => {
                     ? error.response.data.message
                     : error.message,
         })
-        console.log('test', error.response)
     }
 }
 
@@ -78,7 +77,6 @@ export const logout = () => (dispatch) => {
     dispatch({ type: ORDER_LIST_MY_RESET })
     dispatch({ type: ORDER_LIST_RESET })
     dispatch({ type: CART_RESET })
-    console.log('location().pathname', window.location.origin + '/')
     window.location = window.location.origin + '/'
 }
 
@@ -119,7 +117,6 @@ export const register = (name, email, password) => async (dispatch) => {
                     ? error.response.data.message
                     : error.message,
         })
-        console.log('test', error.response)
     }
 }
 
@@ -136,7 +133,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(`/api/users/${id}`, config)
-        console.log('data in user action', data)
 
         dispatch({ type: USER_DETAILS_SUCCESS, payload: data })
 
@@ -148,7 +144,6 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
                     ? error.response.data.message
                     : error.message,
         })
-        console.log('test', error.response)
     }
 }
 
@@ -166,7 +161,6 @@ export const getUserUpdateProfile = (user) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.put('/api/users/profile', user, config)
-        console.log('data in user action', data)
 
         dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data })
 
@@ -181,7 +175,6 @@ export const getUserUpdateProfile = (user) => async (dispatch, getState) => {
                     ? error.response.data.message
                     : error.message,
         })
-        console.log('test', error.response)
     }
 }
 
@@ -198,7 +191,6 @@ export const listUsers = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get('/api/users', config)
-        console.log('data in user action', data)
 
         dispatch({ type: USER_LIST_SUCCESS, payload: data })
 
@@ -210,7 +202,6 @@ export const listUsers = () => async (dispatch, getState) => {
                     ? error.response.data.message
                     : error.message,
         })
-        console.log('test', error.response)
     }
 }
 
@@ -238,7 +229,6 @@ export const deleteUser = (id) => async (dispatch, getState) => {
                     ? error.response.data.message
                     : error.message,
         })
-        console.log('test', error.response)
     }
 }
 
@@ -268,6 +258,5 @@ export const updateUser = (user) => async (dispatch, getState) => {
                     ? error.response.data.message
                     : error.message,
         })
-        console.log('test', error.response)
     }
 }

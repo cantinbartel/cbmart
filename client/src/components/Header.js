@@ -16,13 +16,11 @@ const Header = ({menuOpen, setMenuOpen}) => {
 
     const logoutHandler = () => {
         dispatch(logout())
-        console.log('Loged out')
     }
     const closeDropDown = () => {
         if (open) {
             setOpen(false)
         }
-        console.log('close it')
     }
 
     const closeAdminDropDown = () => {
@@ -31,22 +29,8 @@ const Header = ({menuOpen, setMenuOpen}) => {
         }
     }
 
-    console.log('userInfo', userInfo)
     return (
         <div className='bg-graphit text-white h-20 w-full flex justify-center items-center fixed top-0 z-20' onClick={() => {closeDropDown(); closeAdminDropDown()}}>
-            {/* <div 
-                className='flex flex-col md:flex-row justify-center items-end cursor-pointer'
-                onClick={() => navigate('/')}>
-                <p className='text-3xl'>CB-Market.</p>
-                <p className='text-base'>マーケット</p>
-            </div>
-            <div className="lg:hidden">
-                <div className="w-8 flex flex-col" onClick={() => setMenuOpen(!menuOpen)}>
-                    <span className={`h-0.5 w-full bg-white my-1 ${menuOpen ? 'rotate-45 translate-y-1.5 transition' : 'transition'}`}></span>
-                    <span className={`h-0.5 w-full bg-white my-1 ${menuOpen ? 'hidden transition' : 'transition'}`}></span>
-                    <span className={`h-0.5 w-full bg-white my-1 ${menuOpen ? '-rotate-45 -translate-y-1 transition' : 'transition'}`}></span>
-                </div>
-            </div> */}
             <div className='flex justify-between items-center w-10/12' onClick={() => {closeDropDown(); closeAdminDropDown()}}>
                 <div 
                     className='flex flex-col md:flex-row justify-center items-end cursor-pointer'

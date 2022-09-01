@@ -7,8 +7,6 @@ import User from "../models/userModel.js"
 // @access Public
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
-    console.log('email', email)
-    console.log('password', password)
 
     const user = await User.findOne({ email })
 
@@ -164,7 +162,6 @@ const updateUser = asyncHandler(async (req, res) => {
     const user = await User.findById(req.params.id)
 
     if (user) {
-        console.log('req.body', req.body)
         user.name = req.body.name || user.name
         user.email = req.body.email || user.email
         user.isAdmin = req.body.isAdmin || user.isAdmin

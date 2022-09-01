@@ -13,7 +13,6 @@ const Drawer = ({menuOpen}) => {
     const { userInfo } = userLogin
     const logoutHandler = () => {
         dispatch(logout())
-        console.log('Loged out')
     }
   return (
     <div 

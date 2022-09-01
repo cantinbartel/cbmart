@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
+import Product from "../models/productModel.js";
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -18,8 +19,22 @@ export const addOrderItems = asyncHandler(async (req, res) => {
     if (orderItems && orderItems.length === 0) {
         res.status(400)
         throw new Error('No order items')
-        return
     } else {
+        (async () => {
+            for (const item of orderItems) {
+                const dbItem = await Product.findById(item.product)
+                if (dbItem) {
+                    if (item.price != dbItem.price) {
+                        res.status(401)
+                        throw new Error('Not Authorized')
+                    }
+                } else {
+                    res.status(404)
+                    throw new Error('No corresponding items found')
+                }
+            }
+        })()
+        
         const order = new Order({
             orderItems,
             user: req.user._id,

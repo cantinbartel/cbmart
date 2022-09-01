@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { getUserDetails, updateUser } from '../actions/userActions'
 import { USER_UPDATE_RESET } from '../constants/userConstants'
 import Footer from '../components/Footer'
+import { FiLoader } from "react-icons/fi"
 
 const UserEditScreen = (props) => {
     const dispatch = useDispatch()
@@ -22,13 +23,8 @@ const UserEditScreen = (props) => {
     const [isAdmin, setIsAdmin] = useState(user.isAdmin || false)
 
     const { id } = useParams()
-    const testId = props.match?.params.id
     const navigate = useNavigate()
     const location = useLocation()
-    console.log('USERDETAILS', userDetails)
-    console.log('USER', user)
-    console.log('USERID', id)
-    console.log('TESTID', testId)
 
     useEffect(() => {
         if(successUpdate) {
@@ -56,9 +52,9 @@ const UserEditScreen = (props) => {
                 <Link to='/admin/userlist'>
                         <span className='font-bold mb-8'>GO BACK</span>
                 </Link>
-                { loadingUpdate && <p>Loading...</p> }
+                { loadingUpdate && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
                 { errorUpdate && <p>{errorUpdate}</p> }
-                {loading ? <p>Loading...</p> : error ? <p>{error}</p> : (
+                {loading ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : error ? <p>{error}</p> : (
                     <div className="h-full w-full lg:w-1/3 mx-auto mb-8 my-8">
                         <h1 className="uppercase text-3xl font-semibold mb-6 text-center lg:text-left">Edit User</h1>
                         <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>

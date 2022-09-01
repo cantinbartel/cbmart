@@ -6,6 +6,7 @@ import { listProductDetails, createProduct } from '../actions/productAction'
 import { PRODUCT_CREATE_RESET, PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 import { USER_UPDATE_RESET } from '../constants/userConstants'
 import Footer from '../components/Footer'
+import { FiLoader } from "react-icons/fi"
 
 const ProductCreateScreen = (props) => {
     const dispatch = useDispatch()
@@ -31,14 +32,11 @@ const ProductCreateScreen = (props) => {
  
     const navigate = useNavigate()
 
-    console.log('producproductCreated', productCreated)
-
     useEffect(() => {
         if(successCreate) {
             dispatch({ type: PRODUCT_CREATE_RESET })
             navigate('/admin/productlist')
         }  
-        console.log('productCreated', productCreated)
     }, [productCreated, dispatch, navigate, successCreate])
     
     const uploadFileHandler = async (e) => {
@@ -82,9 +80,9 @@ const ProductCreateScreen = (props) => {
                 <Link to='/admin/productlist'>
                         <span className='font-bold mb-8 ml-4 lg:ml-0'>GO BACK</span>
                 </Link>
-                { loadingCreate && <p>Loading ...</p> }
+                { loadingCreate && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
                 { errorCreate && <p>{errorCreate}</p> }
-                {loading ? <p>Loading...</p> : error ? <p>{error}</p> : (
+                {loading ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : error ? <p>{error}</p> : (
                     <div className="h-full w-10/12 lg:w-1/2 mx-auto my-8">
                         <h1 className="uppercase text-3xl font-semibold mb-6 text-center lg:text-left">Create Product</h1>
                         <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
@@ -125,7 +123,7 @@ const ProductCreateScreen = (props) => {
                                 id="image-file"
                                 type="file"
                                 onChange={uploadFileHandler}/>
-                            {uploading && <p>loading...</p>}
+                            {uploading && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
                             <label
                                 className="capitalize text-gray-600 font-semibold mb-1.5 mt-4"
                                 htmlFor="brand">Brand</label>

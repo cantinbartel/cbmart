@@ -32,8 +32,7 @@ const UserListScreen = () => {
             dispatch(deleteUser(id))
         }
     }
-    console.log('users', users)
-    console.log('userList', userList)
+    
   return (
     <>
         <div className="w-10/12 mx-auto pt-24" style={{ minHeight: `calc(100vh - 4rem)`}}>

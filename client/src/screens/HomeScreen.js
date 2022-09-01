@@ -15,10 +15,7 @@ import Meta  from '../components/Meta'
 import Footer from '../components/Footer'
 
 const HomeScreen = () => {
-    console.log('React Version', version)
     const { keyword, pageNumber = 1 } = useParams()
-    console.log('keyword', keyword)
-    console.log('pageNumber', pageNumber)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(listProducts(keyword, pageNumber))

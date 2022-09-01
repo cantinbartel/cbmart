@@ -76,9 +76,6 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState()
 
-        console.log('getState', getState())
-        console.log('userInfo.token', userInfo.token)
-
         const config = {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
@@ -109,9 +106,6 @@ export const createProduct = (product) => async (dispatch, getState) => {
             userLogin: { userInfo },
         } = getState()
 
-        console.log('getState', getState())
-        console.log('userInfo.token', userInfo.token)
-
         const config = {
             headers: {
                 Authorization: `Bearer ${userInfo.token}`,
@@ -119,7 +113,6 @@ export const createProduct = (product) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(`/api/products`, product, config)
-        console.log('testData', data)
 
         dispatch({
             type: PRODUCT_CREATE_SUCCESS,
@@ -135,40 +128,6 @@ export const createProduct = (product) => async (dispatch, getState) => {
         })
     }
 }
-
-// export const createProduct = () => async (dispatch, getState) => {
-//     try {
-//         dispatch({ type: PRODUCT_CREATE_REQUEST })
-
-//         const {
-//             userLogin: { userInfo },
-//         } = getState()
-
-//         console.log('getState', getState())
-//         console.log('userInfo.token', userInfo.token)
-
-//         const config = {
-//             headers: {
-//                 Authorization: `Bearer ${userInfo.token}`,
-//             },
-//         }
-
-//         const { data } = await axios.post(`/api/products`, {}, config)
-
-//         dispatch({
-//             type: PRODUCT_CREATE_SUCCESS,
-//             payload: data
-//         })
-//     } catch (error) {
-//         dispatch({
-//             type: PRODUCT_CREATE_FAIL,
-//             payload:
-//                 error.response && error.response.data.message
-//                     ? error.response.data.message
-//                     : error.message
-//         })
-//     }
-// }
  
 export const updateProduct = (product) => async (dispatch, getState) => {
     try {
@@ -184,8 +143,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`,
             },
         }
-        console.log('product', product)
-        console.log('product._id', product._id)
+
         const { data } = await axios.put(`/api/products/${product._id}`, product, config)
 
         dispatch({

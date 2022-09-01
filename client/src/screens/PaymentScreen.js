@@ -18,10 +18,6 @@ const PaymentScreen = () => {
         navigate('/shipping')
     }
 
-    useEffect(() => {
-        console.log(paymentMethod)
-    }, [paymentMethod])
-
     const choosePaymentMethod = (paymentChoosen) => {
         if (paymentChoosen === paymentMethod) {
             setPaymentMethod(null)
@@ -42,20 +38,20 @@ const PaymentScreen = () => {
                 <h1 className="font-semibold text-2xl uppercase mb-12 lg:mb-8 pt-6 lg:pt-0">Payment Method</h1>
                 <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
                     <label
-                        className="capitalize text-gray-600 font-semibold mb-1.5"
+                        className="capitalize text-gray-600 font-semibold mb-1.5 mr-2"
                         htmlFor="paypal">Paypal</label>
                     <input
-                        className="w-full px-4 py-2 bg-gray-100 font-semibold mb-8 lg:mb-4 -mt-6"
+                        className="w-full px-4 py-2 bg-gray-100 font-semibold mb-8 lg:mb-4 -mt-6 -ml-6 lg:-ml-0"
                         id="paypal" type="checkbox"
                         // placeholder="Enter credentials"
                         // value={paymentMethod}
                         checked={paymentMethod === 'paypal'}
                         onChange={() => choosePaymentMethod('paypal')} />
                     <label
-                        className="capitalize text-gray-600 font-semibold mb-1.5"
+                        className="capitalize text-gray-600 font-semibold mb-1.5 mr-2"
                         htmlFor="stripe">Credit Card</label>
                     <input
-                        className="w-full px-4 py-2 bg-gray-100 font-semibold mb-4 -mt-6"
+                        className="w-full px-4 py-2 bg-gray-100 font-semibold mb-4 -mt-6 -ml-6 lg:-ml-0"
                         id="stripe" type="checkbox"
                         // placeholder="Enter credentials"
                         // value={paymentMethod}

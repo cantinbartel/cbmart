@@ -8,6 +8,7 @@ import axios from 'axios'
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET, ORDER_DETAILS_RESET } from '../constants/orderConstants'
 import { CART_RESET } from '../constants/cartConstants'
 import Footer from '../components/Footer'
+import { FiLoader } from "react-icons/fi"
 
 const OrderScreen = () => {
     const [lastIndex, setLastIndex] = useState(0)
@@ -18,8 +19,6 @@ const OrderScreen = () => {
     const dispatch = useDispatch()
 
     const orderId = id
-
-    console.log('orderId', orderId)
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
@@ -33,7 +32,6 @@ const OrderScreen = () => {
     const orderDeliver = useSelector(state => state.orderDeliver)
     const { loading: loadingDeliver, success: successDeliver } = orderDeliver
 
-    console.log('order.isPaid', order?.isPaid)
     useEffect(() => {
         dispatch(getOrderDetails(orderId))
     }, [])
@@ -80,9 +78,7 @@ const OrderScreen = () => {
         dispatch(deliverOrder(order))
     }
 
-    console.log('Payment Result', paymentResult)
-
-    { loading && <p>Loading...</p> }
+    { loading && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
     { error && <p>{error}</p> }
     return (
         <>
@@ -95,7 +91,7 @@ const OrderScreen = () => {
                     <div className="w-full lg:w-8/12">
                         <h1 className="font-semibold text-lg uppercase mb-3 mt-8 lg:mt-6">Shipping</h1>
                         <p className="capitalize"><span className="font-semibold">Name:</span>&nbsp;{order?.user.name}</p>
-                        <p className="capitalize"><span className="font-semibold">Email:</span>&nbsp;<a href={`mailto:${order?.user.email}`}>{order?.user.email}</a></p>
+                        <p><span className="font-semibold">Email:</span>&nbsp;<a href={`mailto:${order?.user.email}`}>{order?.user.email}</a></p>
                         <p className="mb-4">
                             <span className="font-semibold capitalize">Address:</span>&nbsp;
                             {order?.shippingAddress.address},&nbsp;{order?.shippingAddress.vity}&nbsp;
@@ -155,13 +151,13 @@ const OrderScreen = () => {
                             </div>
                             {!order?.isPaid && (
                                 <div className="flex justify-center lg:justify-start items-center border border-gray-300 py-3 px-4">
-                                    {loadingPay && <p>Loading...</p>}
-                                    {!sdkReady ? <p>Loading...</p> : (
+                                    {loadingPay && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
+                                    {!sdkReady ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : (
                                         <Paypal amount={order?.totalPrice} setPaymentResult={setPaymentResult} />
                                     )}
                                 </div>
                             )}
-                            {loadingDeliver && <p>Loading...</p>}
+                            {loadingDeliver && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
                             {userInfo && userInfo.isAdmin && order?.isPaid && !order?.isDelivered && (
                                 <button
                                     className="w-full bg-black text-white font-semibold px-3 py-2 rounded mt-3" 
