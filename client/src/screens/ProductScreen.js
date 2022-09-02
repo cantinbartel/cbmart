@@ -71,8 +71,8 @@ const ProductScreen = () => {
                                     <label>
                                         quantity:
                                         <select value={qty} onChange={e => setQty(e.target.value)}>
-                                            {[...Array(product.countInStock).keys()].map(x => (
-                                                <option key={x + 1} value={x + 1}>
+                                            {[...Array(product.countInStock).keys()].map((x, i) => (
+                                                <option key={i} value={x + 1}>
                                                     {x + 1}
                                                 </option>
                                             ))}
@@ -91,8 +91,8 @@ const ProductScreen = () => {
                                     <p className='text-2xl font-semibold uppercase mb-4'>Reviews</p>
                                     {product.reviews.length === 0 && <p>No Reviews</p>}
                                     {product.reviews.map((review, i) => (
-                                        <>
-                                            <div key={review._id}>
+                                        <React.Fragment key={review._id}>
+                                            <div>
                                                 <strong>{review.name}</strong>
                                                 <Rating value={review.rating} />
                                                 <p className='mb-2'>{review.createdAt.substring(0, 10)}</p>
@@ -101,7 +101,7 @@ const ProductScreen = () => {
                                             {i + 1 !== product.reviews.length && (
                                                 <hr className='w-full border mt-2 mb-4' />
                                             )}
-                                        </>
+                                        </React.Fragment>
                                     ))}
                                 </div>
                                 <div>
