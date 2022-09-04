@@ -90,7 +90,7 @@ const RegisterScreen = () => {
                 </div>
                 {message && <p>{message}</p>}
                 {error && <p>{error}</p>}
-                {loading && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
+                {loading && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' />}
             </div>
             <Footer />
         </>

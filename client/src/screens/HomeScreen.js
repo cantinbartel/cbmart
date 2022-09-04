@@ -40,7 +40,7 @@ const HomeScreen = () => {
                 </div>
                 <div className={`w-full flex flex-wrap ${loading || error ? 'justify-center items-center' : 'justify-start'}`}>
                     {loading ? (
-                        <FiLoader className='text-5xl rotating mt-36 mb-60' />
+                        <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' />
                     ) : error ? (
                         <h3 className='text-2xl mt-36 mb-60'>{error}</h3>
                     ) : (

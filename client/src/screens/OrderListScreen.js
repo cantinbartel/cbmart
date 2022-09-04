@@ -35,7 +35,7 @@ const OrderListScreen = () => {
     <>
         <div className="w-10/12 mx-auto pt-24" style={{ minHeight: `calc(100vh - 4rem)`}}>
             <h1 className="uppercase text-3xl font-semibold mb-6 pt-6">Orders</h1>
-            { loading ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : error ? <p>{error.message}</p> : (
+            { loading ? <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> : error ? <p>{error.message}</p> : (
                 <>
                     <table className="w-full hidden lg:block">
                         <thead className="w-full border border-gray-200">

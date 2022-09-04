@@ -52,9 +52,9 @@ const UserEditScreen = (props) => {
                 <Link to='/admin/userlist'>
                         <span className='font-bold mb-8'>GO BACK</span>
                 </Link>
-                { loadingUpdate && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
+                { loadingUpdate && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> }
                 { errorUpdate && <p>{errorUpdate}</p> }
-                {loading ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : error ? <p>{error}</p> : (
+                {loading ? <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> : error ? <p>{error}</p> : (
                     <div className="h-full w-full lg:w-1/3 mx-auto mb-8 my-8">
                         <h1 className="uppercase text-3xl font-semibold mb-6 text-center lg:text-left">Edit User</h1>
                         <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>

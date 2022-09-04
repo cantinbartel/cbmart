@@ -66,10 +66,10 @@ const ProductListScreen = () => {
                 </button>
             </div>
             { errorDelete && <p>{errorDelete }</p> }
-            { loadingDelete && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
+            { loadingDelete && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> }
             { errorCreate && <p>{errorCreate }</p> }
-            { loadingCreate  && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
-            { loading ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : error ? <p>{error.message}</p> : (
+            { loadingCreate  && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> }
+            { loading ? <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> : error ? <p>{error.message}</p> : (
                 <>
                     <table className="w-full hidden lg:block">
                         <thead className="w-full border border-gray-200">

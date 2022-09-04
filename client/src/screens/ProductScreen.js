@@ -51,7 +51,7 @@ const ProductScreen = () => {
                     <span className='font-bold mb-8'>GO BACK</span>
                 </Link>
                 {loading ? (
-                    <FiLoader className='text-5xl rotating mt-36 mb-60' />
+                    <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' />
                 ) : error ? (
                     <h3 className='text-2xl mt-36 mb-60'>{error}</h3>
                 ) : (

@@ -80,9 +80,9 @@ const ProductCreateScreen = (props) => {
                 <Link to='/admin/productlist'>
                         <span className='font-bold mb-8 ml-4 lg:ml-0'>GO BACK</span>
                 </Link>
-                { loadingCreate && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
+                { loadingCreate && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> }
                 { errorCreate && <p>{errorCreate}</p> }
-                {loading ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : error ? <p>{error}</p> : (
+                {loading ? <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> : error ? <p>{error}</p> : (
                     <div className="h-full w-10/12 lg:w-1/2 mx-auto my-8">
                         <h1 className="uppercase text-3xl font-semibold mb-6 text-center lg:text-left">Create Product</h1>
                         <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
@@ -123,7 +123,7 @@ const ProductCreateScreen = (props) => {
                                 id="image-file"
                                 type="file"
                                 onChange={uploadFileHandler}/>
-                            {uploading && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
+                            {uploading && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' />}
                             <label
                                 className="capitalize text-gray-600 font-semibold mb-1.5 mt-4"
                                 htmlFor="brand">Brand</label>

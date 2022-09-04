@@ -108,11 +108,11 @@ const ProfileScreen = () => {
                 {message && <p>{message}</p>}
                 {error && <p>{error}</p>}
                 {success && <p>Profile Updated</p>}
-                {loading && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
+                {loading && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' />}
             </div>
             <div className="h-full w-9/12 mx-8 pt-6 mt-8 lg:mt-0">
                 <h1 className="uppercase text-3xl font-semibold mb-6">My Orders</h1>
-                {loadingOrders ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> :
+                {loadingOrders ? <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> :
                     errorOrders ? <p>{errorOrders}</p> : (
                         <>
                         <table className="hidden lg:block w-full">

@@ -92,9 +92,9 @@ const ProductEditScreen = () => {
                 <Link to='/admin/productlist'>
                         <span className='font-bold mb-8 ml-4 lg:ml-0'>GO BACK</span>
                 </Link>
-                { loadingUpdate && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
-                { errorUpdate && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
-                {loading ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : error ? <p>{error}</p> : (
+                { loadingUpdate && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> }
+                { errorUpdate && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> }
+                {loading ? <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> : error ? <p>{error}</p> : (
                     <div className="h-full w-10/12 lg:w-1/2 mx-auto my-8 ">
                         <h1 className="uppercase text-3xl font-semibold mb-6 text-center lg:text-left">Edit Product</h1>
                         <form className="flex flex-col justify-center items-start" onSubmit={handleSubmit}>
@@ -135,7 +135,7 @@ const ProductEditScreen = () => {
                                 id="image-file"
                                 type="file"
                                 onChange={uploadFileHandler}/>
-                            {uploading && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
+                            {uploading && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' />}
                             <label
                                 className="capitalize text-gray-600 font-semibold mb-1.5 mt-4"
                                 htmlFor="brand">Brand</label>
