@@ -56,7 +56,7 @@ const PlaceOrderScreen = () => {
                         <h1 className="font-semibold text-2xl uppercase mb-3">Shipping</h1>
                         <p className="mb-4">
                             <span className="font-semibold capitalize">Address:</span>&nbsp;
-                            {cart.shippingAddress.address},&nbsp;{cart.shippingAddress.vity}&nbsp;
+                            {cart.shippingAddress.address},&nbsp;{cart.shippingAddress.city}&nbsp;
                             {cart.shippingAddress.postalCode},&nbsp;{cart.shippingAddress.country}
                         </p>
                         <hr />

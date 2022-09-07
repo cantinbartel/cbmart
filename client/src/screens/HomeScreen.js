@@ -34,8 +34,8 @@ const HomeScreen = () => {
                 </Link>
             )}
             <div className='w-10/12 mx-auto overflow-hidden lg:-mb-12'>
-                <div className='w-full flex justify-between'>
-                    <h1 className='text-4xl mt-6 mb-10'>Latest Products</h1>
+                <div className={`w-full flex ${window.location.href.includes('search') ? 'justify-end mb-12' : 'justify-between'}`}>
+                    {window.location.href.includes('search') ? '' : <h1 className='text-4xl mt-6 mb-10'>Latest Products</h1>}
                     <SearchBox />
                 </div>
                 <div className={`w-full flex flex-wrap ${loading || error ? 'justify-center items-center' : 'justify-start'}`}>

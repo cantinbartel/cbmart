@@ -52,7 +52,6 @@ const OrderScreen = () => {
 
         setLastIndex(order?.orderItems.length - 1)
 
-        // if (!order || successPay || successDeliver) {
         if (!order || successPay || successDeliver || order._id !== orderId) {
             dispatch({ type: ORDER_PAY_RESET })
             dispatch({ type: ORDER_DELIVER_RESET })
@@ -78,7 +77,7 @@ const OrderScreen = () => {
         dispatch(deliverOrder(order))
     }
 
-    { loading && <FiLoader className='text-5xl rotating mt-36 mb-60' /> }
+    { loading && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> }
     { error && <p>{error}</p> }
     return (
         <>
@@ -94,7 +93,7 @@ const OrderScreen = () => {
                         <p><span className="font-semibold">Email:</span>&nbsp;<a href={`mailto:${order?.user.email}`}>{order?.user.email}</a></p>
                         <p className="mb-4">
                             <span className="font-semibold capitalize">Address:</span>&nbsp;
-                            {order?.shippingAddress.address},&nbsp;{order?.shippingAddress.vity}&nbsp;
+                            {order?.shippingAddress.address},&nbsp;{order?.shippingAddress.city}&nbsp;
                             {order?.shippingAddress.postalCode},&nbsp;{order?.shippingAddress.country}
                         </p>
                         {order?.isDelivered ? <p className="font-semibold capitalize">Delivered on {order?.deliveredAt}</p> : <p className="font-semibold capitalize">Not Delivered</p>}
@@ -151,13 +150,13 @@ const OrderScreen = () => {
                             </div>
                             {!order?.isPaid && (
                                 <div className="flex justify-center lg:justify-start items-center border border-gray-300 py-3 px-4">
-                                    {loadingPay && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
-                                    {!sdkReady ? <FiLoader className='text-5xl rotating mt-36 mb-60' /> : (
+                                    {loadingPay && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' />}
+                                    {!sdkReady ? <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' /> : (
                                         <Paypal amount={order?.totalPrice} setPaymentResult={setPaymentResult} />
                                     )}
                                 </div>
                             )}
-                            {loadingDeliver && <FiLoader className='text-5xl rotating mt-36 mb-60' />}
+                            {loadingDeliver && <FiLoader className='text-5xl rotating mt-36 mb-60 mx-auto' />}
                             {userInfo && userInfo.isAdmin && order?.isPaid && !order?.isDelivered && (
                                 <button
                                     className="w-full bg-black text-white font-semibold px-3 py-2 rounded mt-3" 

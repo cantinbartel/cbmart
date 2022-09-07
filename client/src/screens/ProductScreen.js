@@ -112,29 +112,43 @@ const ProductScreen = () => {
                                         <form onSubmit={submitHandler}>
                                             <p className='mb-2'>Rating</p>
                                             <div className='flex justify-start mb-4'>
-                                            {[...Array(5)].map((star, index) => {
-                                                if (index + 1 <= (hover || rating)) {
-                                                    return (
-                                                        <BsStarFill 
-                                                            key={index + 1} 
-                                                            style={{ color: '#f1c40f', fontSize: '1.5rem' }}
-                                                            className='mr-1' 
-                                                            onClick={() => setRating(index + 1)}
-                                                            onMouseEnter={() => setHover(index + 1)}
-                                                            onMouseLeave={() => setHover(rating)} />
-                                                    )
-                                                } else {
-                                                    return (
-                                                        <BsStar 
-                                                            key={index + 1}
-                                                            style={{ color: '#f1c40f', fontSize: '1.5rem' }}
-                                                            className='mr-1'
-                                                            onClick={() => setRating(index + 1)}
-                                                            onMouseEnter={() => setHover(index + 1)}
-                                                            onMouseLeave={() => setHover(rating)} />
-                                                    )
-                                                }  
-                                            })}
+                                                {[...Array(5)].map((star, index) => {
+                                                    if (index + 1 <= (hover || rating)) {
+                                                        return (
+                                                            <>
+                                                                <BsStarFill 
+                                                                    key={index + 1} 
+                                                                    style={{ color: '#f1c40f', fontSize: '1.5rem' }}
+                                                                    className='mr-1 hidden lg:block' 
+                                                                    onClick={() => setRating(index + 1)}
+                                                                    onMouseEnter={() => setHover(index + 1)}
+                                                                    onMouseLeave={() => setHover(rating)} />
+                                                                <BsStarFill 
+                                                                    key={index + 1} 
+                                                                    style={{ color: '#f1c40f', fontSize: '1.5rem' }}
+                                                                    className='mr-1 lg:hidden' 
+                                                                    onClick={() => setRating(index + 1)} />
+                                                            </>
+                                                        )
+                                                    } else {
+                                                        return (
+                                                            <>
+                                                                <BsStar 
+                                                                    key={index + 1}
+                                                                    style={{ color: '#f1c40f', fontSize: '1.5rem' }}
+                                                                    className='mr-1 hidden lg:block'
+                                                                    onClick={() => setRating(index + 1)}
+                                                                    onMouseEnter={() => setHover(index + 1)}
+                                                                    onMouseLeave={() => setHover(rating)} />
+                                                                <BsStar 
+                                                                    key={index + 1}
+                                                                    style={{ color: '#f1c40f', fontSize: '1.5rem' }}
+                                                                    className='mr-1 lg:hidden'
+                                                                    onClick={() => setRating(index + 1)} />
+                                                            </>
+                                                        )
+                                                    }  
+                                                })}
                                             </div>
                                             <label>Comment</label>
                                             <textarea

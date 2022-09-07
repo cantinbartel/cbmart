@@ -8,17 +8,12 @@ const SearchBox = () => {
     e.preventDefault()
     if (keyword.trim()) {
       navigate(`/search/${keyword}`)
+      setKeyWord('')
     } else {
       navigate('/')
+      setKeyWord('')
     }
   }
-  // useEffect(() => {
-  //     if (keyword.trim()) {
-  //       navigate(`/search/${keyword}`)
-  //     } else {
-  //       navigate('/')
-  //     }
-  // }, [keyword])
   return (
     <form onSubmit={submitHandler}>
       <div className='flex'>
